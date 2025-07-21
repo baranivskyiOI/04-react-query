@@ -19,15 +19,24 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+      if (event.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleKeyDown);
+
+    const closeModalByClick = (event: MouseEvent) => {
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.classList.contains("_backdrop_22elp_1")
+      )
+        onClose();
+    };
+
+    document.addEventListener("click", closeModalByClick);
 
     return () => {
       document.body.style.overflow = "auto";
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("click", closeModalByClick);
     };
   }, [onClose]);
 

@@ -15,7 +15,6 @@ const fetchMovies = axios.create({
 });
 
 export async function fetchMoviesByQuery(query: string, page: number): Promise<MoviesHTTPResponse> {
-  console.log(query);
   
         const response = await fetchMovies.get<MoviesHTTPResponse>(
         `/search/movie`,

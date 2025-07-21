@@ -22,6 +22,7 @@ function App() {
 
   const handleSearch = (query: string) => {
     setFetchQuery(query);
+    setCurrentPage(1);
   };
 
   const { data, isLoading, isError, isSuccess } = useQuery({
@@ -40,8 +41,6 @@ function App() {
         errorNotify();
         return;
       }
-      console.log(movieList);
-
       setMovies(movieList);
     }
   }, [movieList, movieLength]);
@@ -55,7 +54,6 @@ function App() {
 
   const handleCloseModal = () => {
     setIsOpen(false);
-    setCurrentPage(1);
   };
 
   return (
